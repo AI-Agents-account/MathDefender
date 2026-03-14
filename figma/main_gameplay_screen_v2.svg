@@ -1,16 +1,66 @@
 <svg width="360" height="800" viewBox="0 0 360 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="neon_glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
   <rect width="360" height="800" fill="#050816"/>
+  
+  <!-- Sector Divider -->
   <rect x="0" y="0" width="120" height="800" fill="white" fill-opacity="0.02"/>
-  <g id="Contested_Gate">
-    <rect x="140" y="350" width="200" height="80" rx="8" stroke="#FF2E63" stroke-width="3" stroke-dasharray="8 4"/>
-    <text x="240" y="390" text-anchor="middle" fill="#FF2E63" font-family="monospace" font-size="24" font-weight="bold">ATTACK x10</text>
-    <text x="240" y="415" text-anchor="middle" fill="#FF2E63" font-family="monospace" font-size="10">!!! CONTESTED !!!</text>
-    <circle cx="160" cy="390" r="10" fill="#FF2E63"/>
-    <circle cx="320" cy="390" r="10" fill="#FF2E63"/>
+  <path d="M120 0V800" stroke="#00F5FF" stroke-opacity="0.2" stroke-width="2"/>
+
+  <!-- Left Side: Status & Buffs -->
+  <g id="Status_Panel">
+    <text x="20" y="50" fill="#00F5FF" font-family="monospace" font-size="12" letter-spacing="0.2em">STATUS</text>
+    <rect x="20" y="70" width="80" height="10" rx="2" fill="white" fill-opacity="0.1"/>
+    <rect x="20" y="70" width="65" height="10" rx="2" fill="#7CFF4F"/>
+    
+    <text x="20" y="120" fill="#FF00FF" font-family="monospace" font-size="12" letter-spacing="0.2em">BUFFS</text>
+    <circle cx="40" cy="150" r="15" fill="#FF00FF" fill-opacity="0.1" stroke="#FF00FF"/>
+    <text x="40" y="155" text-anchor="middle" fill="white" font-family="monospace" font-size="10">ATK</text>
+    <circle cx="80" cy="150" r="15" fill="#00F5FF" fill-opacity="0.1" stroke="#00F5FF"/>
+    <text x="80" y="155" text-anchor="middle" fill="white" font-family="monospace" font-size="10">SPD</text>
   </g>
-  <g id="Left_Buff_Stack">
-    <rect x="10" y="100" width="100" height="60" rx="4" stroke="#00FFF0" fill="#00FFF0" fill-opacity="0.1"/>
-    <text x="60" y="135" text-anchor="middle" fill="#00FFF0" font-family="monospace" font-size="12">COUNT +20</text>
+
+  <!-- Right Side: Arena -->
+  <g id="Combat_Arena">
+    <!-- Arena Grid -->
+    <path d="M120 150H360M120 300H360M120 450H360M120 600H360" stroke="#00F5FF" stroke-opacity="0.1"/>
+    
+    <!-- Contested Gate -->
+    <g id="Contested_Gate">
+      <rect x="160" y="250" width="160" height="160" rx="8" fill="#FF4F4F" fill-opacity="0.05"/>
+      <rect x="160.5" y="250.5" width="159" height="159" rx="7.5" stroke="#FF4F4F" stroke-width="3" stroke-dasharray="8 4" filter="url(#neon_glow)"/>
+      <text x="240" y="330" text-anchor="middle" fill="#FF4F4F" font-family="monospace" font-size="48" font-weight="bold">100</text>
+      <text x="240" y="360" text-anchor="middle" fill="#FF4F4F" font-family="monospace" font-size="12">CONTESTED</text>
+      
+      <!-- Occupied Effect -->
+      <path d="M160 250L320 410M320 250L160 410" stroke="#FF4F4F" stroke-opacity="0.2" stroke-width="1"/>
+    </g>
+
+    <!-- Enemy Swarm Placeholder -->
+    <circle cx="180" cy="200" r="5" fill="#FF4F4F"/>
+    <circle cx="300" cy="200" r="5" fill="#FF4F4F"/>
+    <circle cx="240" cy="180" r="8" fill="#FF4F4F" filter="url(#neon_glow)"/>
   </g>
-  <circle cx="240" cy="750" r="30" fill="#00FFF0"/>
+
+  <!-- Player Hero (Positioned for Combat) -->
+  <g id="Player_Hero">
+    <path d="M240 650L265 700H215L240 650Z" fill="#7CFF4F" filter="url(#neon_glow)"/>
+    <!-- Laser Beam -->
+    <path d="M240 650V410" stroke="#7CFF4F" stroke-width="2" stroke-dasharray="4 2">
+       <animate attributeName="stroke-dashoffset" from="0" to="20" dur="0.5s" repeatCount="indefinite" />
+    </path>
+  </g>
+
+  <!-- Bottom UI Accents -->
+  <rect x="20" y="740" width="320" height="40" rx="8" fill="white" fill-opacity="0.05"/>
+  <text x="180" y="765" text-anchor="middle" fill="white" font-family="monospace" font-size="14">HOLD SECTOR: 64%</text>
 </svg>
